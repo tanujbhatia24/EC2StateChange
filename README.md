@@ -39,7 +39,7 @@ This project sets up an AWS Lambda function that listens for EC2 instance state 
    - Execution role: Use existing role → `LambdaEC2SNSRole`
 3. Lambda Code
    You can use the below file for reference.<br>
-   [S3CleanupFunction_tanuj.py](https://github.com/tanujbhatia24/S3_Bucket_Cleanup/blob/main/S3CleanupFunction_tanuj.py)
+   [EC2StateChange_tanuj.py](https://github.com/tanujbhatia24/EC2StateChange/blob/main/EC2StateChange_tanuj.py)
 4. Under Configuration → Environment variables:
    - Key: SNS_TOPIC_ARN
    - Value: Paste the ARN of your SNS topic.
