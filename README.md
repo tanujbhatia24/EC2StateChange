@@ -1,4 +1,4 @@
-# Monitor EC2 Instance State Changes Using AWS Lambda, Boto3, and SNS
+# Assignment 14: Monitor EC2 Instance State Changes Using AWS Lambda, Boto3, and SNS
 ## Overview
 This project sets up an AWS Lambda function that listens for EC2 instance state changes (e.g., `running`, `stopped`) and sends an email notification using Amazon SNS.
 ---
