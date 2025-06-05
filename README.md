@@ -57,8 +57,9 @@ This project sets up an AWS Lambda function that listens for EC2 instance state 
    - Runtime: `Python 3.12`
    - Execution role: Use existing role → `tanuj_LambdaEC2SNSRole`
 3. Lambda Code
-   You can use the below file for reference.<br>
-   [EC2StateChange_tanuj.py](https://github.com/tanujbhatia24/EC2StateChange/blob/main/EC2StateChange_tanuj.py)
+   - You can use the below file for reference.<br>
+     [EC2StateChange_tanuj.py](https://github.com/tanujbhatia24/EC2StateChange/blob/main/EC2StateChange_tanuj.py)
+   - Add a new resource-based policy
 4. Under Configuration → Environment variables:
    - Key: SNS_TOPIC_ARN
    - Value: Paste the ARN of your SNS topic.
@@ -99,8 +100,9 @@ This project sets up an AWS Lambda function that listens for EC2 instance state 
 ![image](https://github.com/user-attachments/assets/478bb9b3-d28d-46b8-b3a7-86352293f4fe)<br>
 - IAM role with permissions<br>
 ![image](https://github.com/user-attachments/assets/c2ce25f1-a101-4615-98db-8759ae99eca3)<br>
-- Lambda function & Trigger<br>
+- Lambda function, trigger and resource-based policy<br>
 ![image](https://github.com/user-attachments/assets/8cae2462-1dba-40a4-b4f0-9631ffdd1654)<br>
+![image](https://github.com/user-attachments/assets/45f897e9-cce3-4be4-9071-695b3010201c)<br>
 - EventBridge Rule Setup<br>
 ![image](https://github.com/user-attachments/assets/0f61a560-3a22-4791-bf12-2e98877e3660)<br>
 - Start & Stop EC2 Instance<br>
