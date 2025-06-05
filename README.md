@@ -47,7 +47,7 @@ This project sets up an AWS Lambda function that listens for EC2 instance state 
 
 ### 4. Create EventBridge Rule
 1. Go to EventBridge → Rules → Create rule.
-2. Name: EC2StateChangeRule
+2. Name: EC2StateChangeRule_tanuj
 3. Define the event pattern:
   ```bash
      {
