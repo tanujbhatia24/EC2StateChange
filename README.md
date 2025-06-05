@@ -28,7 +28,26 @@ This project sets up an AWS Lambda function that listens for EC2 instance state 
    - `AmazonEC2ReadOnlyAccess`
    - `AmazonSNSFullAccess`
    - `AWSLambdaBasicExecutionRole` (for logging)
-4. Name the role `LambdaEC2SNSRole`.
+4. add the ec2:CreateTags permission to your Lambda's IAM role.
+   - Go to the IAM Console → Roles.
+   - Search and select your role: tanuj_LambdaEC2SNSRole.
+   - Click Add permissions → Attach policies.
+   - Choose Create policy (if needed) with the following content:
+     ```bash
+        {
+           "Version": "2012-10-17",
+           "Statement": [
+             {
+               "Effect": "Allow",
+               "Action": [
+                  "ec2:CreateTags"
+               ],
+               "Resource": "*"
+             }
+           ]
+         }
+     ```
+5. Name the role `LambdaEC2SNSRole`.
 ---
 
 ### 3. Create the Lambda Function
