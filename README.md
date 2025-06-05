@@ -13,7 +13,7 @@ This project sets up an AWS Lambda function that listens for EC2 instance state 
 ## Setup Instructions
 ### 1. Create SNS Topic and Subscription
 1. Navigate to the **SNS Console** → **Topics** → `Create topic`.
-2. Choose **Standard** and name it, e.g., `EC2StateChangeTopic`.
+2. Choose **Standard** and name it, e.g., `EC2StateChangeTopic_tanuj`.
 3. Click `Create topic`.
 4. On the topic page, click `Create subscription`:
    - **Protocol**: Email
@@ -55,7 +55,7 @@ This project sets up an AWS Lambda function that listens for EC2 instance state 
 2. Choose:
    - Name: `EC2StateChangeNotifier`
    - Runtime: `Python 3.12`
-   - Execution role: Use existing role → `LambdaEC2SNSRole`
+   - Execution role: Use existing role → `tanuj_LambdaEC2SNSRole`
 3. Lambda Code
    You can use the below file for reference.<br>
    [EC2StateChange_tanuj.py](https://github.com/tanujbhatia24/EC2StateChange/blob/main/EC2StateChange_tanuj.py)
@@ -96,14 +96,17 @@ This project sets up an AWS Lambda function that listens for EC2 instance state 
 
 ## Screenshots
 - SNS Topic<br>
-- Email Confirmation<br>
+![image](https://github.com/user-attachments/assets/478bb9b3-d28d-46b8-b3a7-86352293f4fe)<br>
 - IAM role with permissions<br>
-- Lambda function<br>
-- Lambda test execution<br>
+![image](https://github.com/user-attachments/assets/c2ce25f1-a101-4615-98db-8759ae99eca3)<br>
+- Lambda function & Trigger<br>
+![image](https://github.com/user-attachments/assets/8cae2462-1dba-40a4-b4f0-9631ffdd1654)<br>
 - EventBridge Rule Setup<br>
+![image](https://github.com/user-attachments/assets/0f61a560-3a22-4791-bf12-2e98877e3660)<br>
 - Start & Stop EC2 Instance<br>
+![image](https://github.com/user-attachments/assets/2f8a89a0-c75a-4776-ba9b-4c2a91b24c93)<br>
 - SNS Notification Received<br>
-- Example Email Notification<br>
+![image](https://github.com/user-attachments/assets/937c8918-75af-47b4-a177-eb426b0bc51e)<br>
 ---
 
 ## License
