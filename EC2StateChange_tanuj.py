@@ -1,28 +1,34 @@
 import boto3
-import json
-import os
-
-sns_client = boto3.client('sns')
-TOPIC_ARN = os.environ['SNS_TOPIC_ARN']
+from datetime import datetime
 
 def lambda_handler(event, context):
-    # Extract instance ID and state
-    detail = event.get('detail', {})
-    instance_id = detail.get('instance-id')
-    state = detail.get('state')
+    ec2 = boto3.client('ec2')
+    
+    try:
+        instance_id = event['detail']['instance-id']
+    except KeyError:
+        print("No instance ID found in the event.")
+        return {'statusCode': 400, 'body': 'Instance ID not found'}
 
-    message = f"EC2 Instance {instance_id} is now {state.upper()}."
-    subject = f"EC2 State Change: {state.upper()}"
+    # Get user/role who launched the instance (from CloudTrail event details)
+    user = "Unknown"
+    try:
+        user = event['detail']['userIdentity']['arn']
+    except KeyError:
+        print("Could not extract user identity from event.")
+    
+    # Define tags
+    current_date = datetime.utcnow().strftime('%Y-%m-%d')
+    tags = [
+        {'Key': 'LaunchDate', 'Value': current_date},
+        {'Key': 'LaunchedBy', 'Value': user}
+    ]
 
-    print(f"Sending notification: {message}")
-
-    response = sns_client.publish(
-        TopicArn=TOPIC_ARN,
-        Message=message,
-        Subject=subject
-    )
-
-    return {
-        'statusCode': 200,
-        'body': json.dumps('Notification sent!')
-    }
+    # Apply tags
+    try:
+        ec2.create_tags(Resources=[instance_id], Tags=tags)
+        print(f"Successfully tagged instance {instance_id} with tags: {tags}")
+        return {'statusCode': 200, 'body': f'Tagged instance {instance_id}'}
+    except Exception as e:
+        print(f"Failed to tag instance: {str(e)}")
+        return {'statusCode': 500, 'body': 'Error tagging instance'}
